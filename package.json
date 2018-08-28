@@ -1,0 +1,48 @@
+{
+  "name": "z-bot",
+  "version": "1.0.0",
+  "description": "Rcon Bot ( BattlEye only currently )",
+  "homepage": "",
+  "author": {
+    "name": "Zupa",
+    "email": "jonas_windmolders@hotmail.com",
+    "url": "https://bot.devzupa.be"
+  },
+  "files": [
+    "lib"
+  ],
+  "main": "lib/index.js",
+  "keywords": [
+    "Bot",
+    "Discord",
+    "Zupa"
+  ],
+  "scripts": {
+    "start": "node ./lib/index.js",
+    "bot": "node ./lib/index.js",
+    "updatedb": "node node_modules/geoip-lite/scripts/updatedb.js"
+  },
+  "devDependencies": {},
+  "eslintConfig": {
+    "extends": "xo-space",
+    "env": {
+      "mocha": true
+    }
+  },
+  "repository": "ssh://git@bitbucket.org/Windmolders/z-bot.git",
+  "license": "MIT",
+  "dependencies": {
+    "battle-node": "^0.1.2",
+    "bluebird": "^3.5.1",
+    "clapp": "^1.3.2",
+    "cli-table2": "^0.2.0",
+    "crypto-js": "^3.1.9-1",
+    "discord.js": "^11.4.2",
+    "game-server-query": "^1.0.10",
+    "gamedig": "^1.0.46",
+    "geoip-lite": "^1.3.2",
+    "lodash": "^4.17.10",
+    "moment": "^2.22.2",
+    "node-schedule": "^1.3.0"
+  }
+}
