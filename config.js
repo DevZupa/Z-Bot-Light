@@ -17,7 +17,7 @@ module.exports = {
     // Your bot's user token. If you don't know what that is, go here:
     // https://discordapp.com/developers/applications/me
     // Then create a new application and grab your token.
-    token: "NjEzNjgyODk0Nzk1NDQwMTI4.XV0ezg.vqYH79gpa6MmAscH8GedOaS6lIc", // Test token (Z-Bot (Dev))
+    token: "NjEzNjgyODk0Nzk1NDQwMTI4.XV0ezg.xxxxxxxxxxxxxxxxxxxxxx", // Test token (Z-Bot (Dev))
 
     encryptionKey: '4zcMONp61gpVDcuckG0u',
 
@@ -58,7 +58,9 @@ module.exports = {
         watcher: [
             {
                 channel: 'bot-kill',
-                file: 'KillFeed_2019-08-20_00-01-55.log'
+                directory: 'logs/', // Can also be an absolute path (eg: "C:/Users/server/logs/" )
+                file: 'KillFeed_*.log', // Supports wilcard (*), this will check all the files with the given filter and takes the last modified one to monitor
+                // This is done so there can be log rotations in the same folder.
             }
         ],
 
