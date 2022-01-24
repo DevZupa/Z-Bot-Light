@@ -6,7 +6,7 @@
 * [NodeJS](https://nodejs.org/en/)
 * [Git](https://nodejs.org/en/) ( Only if you clone the repository, you can do it without git if you download the ZIP )
 
-Version LTS (8.11.4) should be enough and stable.
+NodeJS Version LTS (8.11.4) should be enough and stable.
 
 Currently only tested on Mac & Linux but this version should work on windows.
 
