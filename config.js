@@ -4,15 +4,16 @@ module.exports = {
     // i.e: if your bot's username is MemeBot#0420, then this option would be MemeBot.
     name: "Z-Bot",
 
-    // Needs to be exactly the same as your discord server name. ( To know where to log ).
+    // Needs to be exactly the same as your discord server name. ( To know where to log bot logs ).
     discordServerName: 'ZBot',
 
-    version: "1.0.0",
+    version: "1.0.0", // doesn't matter at all.
 
     // The bot's command prefix. The bot will recognize as command any message that begins with it.
     // i.e: "!zbot foo" will trigger the command "foo",
     //      whereas "Z-Bot foo" will do nothing at all.
     prefix:  "!zbot",
+    // rcon commands is always !rcon
 
     // Your bot's user token. If you don't know what that is, go here:
     // https://discordapp.com/developers/applications/me
@@ -50,7 +51,7 @@ module.exports = {
         guildId: "256158903245471753", // Found @ Discord -> (Your server) Server Settings -> Widget -> Copy Server ID
 
         channels: {
-            welcome: "welcome", // not used in this verson
+            welcome: "welcome", // not used in this version
             goodbye: "welcome", // not used in this version
             log: "bot-log" // to log all your technical bot messages.
         },
@@ -69,11 +70,11 @@ module.exports = {
             colors: true,
             servers: [
                 {
-                    name: 'Zupa test server', // Just your
+                    name: 'Zupa test server', // Just informational in logging.
                     ip: '195.xx.xxx.xxx',
                     port: 2303,
                     rconPassword: 'xxxxxxxx',
-                    timezone: 2, // must be number, if negative just put -2
+                    timezone: 2, // must be number, if negative just put -2. This is UTC timezone of your server location.
 
                     actions: [ // actions only for this server.
                         {
@@ -83,8 +84,8 @@ module.exports = {
                             role: 'rcon-admin' // role to mention in discord together with discordreply, leave '' if none.
                         }
                     ],
-                    channels: {
-                        side: 'bot-text',
+                    channels: { // It's recommended to split several of these into different channels.
+                        side: 'bot-text', // #bot-text ( leave the discord # )
                         direct: 'bot-text',
                         vehicle: 'bot-text',
                         group: 'bot-text',
@@ -95,19 +96,20 @@ module.exports = {
                         global: 'bot-text'
                     },
                     showChannels: {
-                        side: true,
-                        direct: true,
-                        vehicle: true,
-                        group: true,
-                        admin: true,
-                        default: true,
-                        commands: true,
-                        joins: true,
-                        global: true
+                        side: true, // Arma only
+                        direct: true, // Used in DayZ SA and arma ( In Dayz, these are part of global chat but filtered to separate stream )
+                        vehicle: true, // Arma only
+                        group: true, // Arma only
+                        admin: true, // Used in DayZ SA and arma ( RCON chat that is private or join messages )
+                        privateadmin: true, // Used in DayZ SA and arma ( Text that is sent via rcon to 1 person )
+                        default: true, // Used in DayZ SA and arma ( Fallback for non-mapped messages if there are any )
+                        commands: true, // Used in DayZ SA and arma ( Poeple with the role ( set a bit lower ) can use the given discord channel to type commands.
+                        joins: true, // Used in DayZ SA and arma ( Join messages )
+                        global: true // Used in DayZ SA and arma sometimes ( Global dayz chat )
                     },
                     jobs: [
                         {
-                            time: '0 15 * * * *', // Command that a player can type ingame
+                            time: '0 0 6 * * *', // Command that a player can type ingame
                             text: 'Enjoy your stay!', // Bot response ingame
                         }
                     ]
@@ -115,10 +117,10 @@ module.exports = {
             ],
             sharedActions: [ // shared between all servers.
                 {
-                    command: '!ts', // Command that a player can type ingame
-                    reply: 'We use discord!', // Bot response ingame
-                    discordReply: '@Admin Someone asked for ts...', // Bot respone in discord. leave empty if not wanted.
-                    role: 'rcon-admin' // role to mention in discord together with discordreplt
+                    command: '!ts', // Command that a player can type in-game
+                    reply: 'We use discord!', // Bot response in-game
+                    discordReply: '@Admin Someone asked for ts...', // Bot response in discord. leave empty if not wanted.
+                    role: 'rcon-admin' // role to mention in discord together with discord reply
                 },
                 {
                     command: '!discord',
