@@ -2,27 +2,26 @@ module.exports = {
 
     // Your bot name. Typically, this is your bot's username without the discriminator.
     // i.e: if your bot's username is MemeBot#0420, then this option would be MemeBot.
-    name: "Z-Bot",
+    name: "<Your Discord Botname here>",
 
     // Needs to be exactly the same as your discord server name. ( To know where to log bot logs ).
-    discordServerName: 'ZBot',
+    discordServerName: '<Your Discord Servername here>',
 
     version: "1.0.0", // doesn't matter at all.
 
     // The bot's command prefix. The bot will recognize as command any message that begins with it.
     // i.e: "!zbot foo" will trigger the command "foo",
-    //      whereas "Z-Bot foo" will do nothing at all.
     prefix:  "!zbot",
     // rcon commands is always !rcon
 
     // Your bot's user token. If you don't know what that is, go here:
     // https://discordapp.com/developers/applications/me
     // Then create a new application and grab your token.
-    token: "NjEzNjgyODk0Nzk1NDQwMTI4.XV0ezg.xxxxxxxxxxxxxxxxxxxxxx", // Test token (Z-Bot (Dev))
+    token: "<Your Discord Bot Token here>", // eg  NjEzNjgyODk0Nzk1NDQwMTI4.XV0ezg.xxxxxxxxxxxxxxxxxxxxxx
 
     encryptionKey: '4zcMONp61gpVDcuckG0u',
 
-    defaultPlayingStatus: 'RCon',
+    defaultPlayingStatus: 'RCon', // Change this to whatever you want.
 
     // If this option is enabled, the bot will delete the message that triggered it, and its own
     // response, after the specified amount of time has passed.
@@ -41,14 +40,14 @@ module.exports = {
     },
 
     rconReconnect: 30000, // Miliseconds to try reconnect, if server restart or somehow disconnected ( 30 000 = 30 sec )
-    loginAttempts: 20, // total login attempts every x seconds when connection is lost ( eg: when server restarts. )
+    loginAttempts: 20, // total login attempts every "rconReconnect" milieseconds when connection is lost ( eg: when server restarts. )
 
     specificLoaded: false,
 
     specific: {
 
         // eg: 256158903245471753
-        guildId: "256158903245471753", // Found @ Discord -> (Your server) Server Settings -> Widget -> Copy Server ID
+        guildId: "<your Server ID>", // Found @ Discord -> (Your server) Server Settings -> Widget -> Copy Server ID
 
         channels: {
             welcome: "welcome", // not used in this version
@@ -58,6 +57,7 @@ module.exports = {
 
         watcher: [
             {
+                active: false,
                 channel: 'bot-kill',
                 directory: 'logs/', // Can also be an absolute path (eg: "C:/Users/server/logs/" )
                 file: 'KillFeed_*.log', // Supports wilcard (*), this will check all the files with the given filter and takes the last modified one to monitor
@@ -68,13 +68,26 @@ module.exports = {
         bercon: {
             enabled: true,
             colors: true,
+            sendMessagesAsEmbeds: true, // if false, bot posts as code block with coloring. If yes, visual crads with white/black text and channel color as left border.
+            embedColors: { // Hex color of the embed borders.
+                side: '#6ABEE7',
+                direct: '#959AA4',
+                vehicle: '#DBBD48',
+                group: '#3A8347',
+                admin: '#ff0000',
+                privateadmin: '#ff00ff',
+                default: '#ffffff',
+                commands: '#ffffff',
+                joins: '#92FA4D',
+                global: '#6ABEE7'
+            },
             servers: [
                 {
-                    name: 'Zupa test server', // Just informational in logging.
-                    ip: '195.xx.xxx.xxx',
-                    port: 2303,
-                    rconPassword: 'xxxxxxxx',
-                    timezone: 2, // must be number, if negative just put -2. This is UTC timezone of your server location.
+                    name: '<Your Rcon Username you wishes>', // Just informational in logging.
+                    ip: '<your DayZ Server IP>',
+                    port: 2305, // Rcon PORT - Default 2305 or 2303
+                    rconPassword: '<your RCON Password>',
+                    timezone: 0, // must be a number, if negative just put - ( eg:  -2 ). This is UTC timezone of your server location.
 
                     actions: [ // actions only for this server.
                         {
@@ -90,6 +103,7 @@ module.exports = {
                         vehicle: 'bot-text',
                         group: 'bot-text',
                         admin: 'bot-text',
+                        privateadmin: 'bot-text',
                         default: 'bot-text',
                         commands: 'bot-text',
                         joins: 'bot-text',
@@ -107,7 +121,7 @@ module.exports = {
                         joins: true, // Used in DayZ SA and arma ( Join messages )
                         global: true // Used in DayZ SA and arma sometimes ( Global dayz chat )
                     },
-                    jobs: [
+                    jobs: [ // Google: Cron jobs.
                         {
                             time: '0 0 6 * * *', // Command that a player can type ingame
                             text: 'Enjoy your stay!', // Bot response ingame
