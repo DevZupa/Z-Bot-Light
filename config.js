@@ -9,7 +9,7 @@ module.exports = {
 
     version: "1.0.0",
 
-    // The bot's command prefix. The bot will recognize as command any message that begins with it.
+    // The bot's command prefix (The rcon prefix is lower in config.). The bot will recognize as command any message that begins with it.
     // i.e: "!zbot foo" will trigger the command "foo",
     //      whereas "Z-Bot foo" will do nothing at all.
     prefix:  "!zbot",
@@ -19,7 +19,7 @@ module.exports = {
     // Then create a new application and grab your token.
     token: "NjEzNjgyODk0Nzk1NDQwMTI4.XV0ezg.xxxxxxxxxxxxxxxxxxxxxx", // Test token (Z-Bot (Dev))
 
-    encryptionKey: '4zcMONp61gpVDcuckG0u',
+    encryptionKey: '4zcMONp61gpVDcuckG0u', // leave it be
 
     defaultPlayingStatus: 'RCon',
 
@@ -39,6 +39,8 @@ module.exports = {
         channel: 'bot-log'
     },
 
+    ignoreOtherBotMessages: true,
+
     rconReconnect: 30000, // Miliseconds to try reconnect, if server restart or somehow disconnected ( 30 000 = 30 sec )
     loginAttempts: 20, // total login attempts every x seconds when connection is lost ( eg: when server restarts. )
 
@@ -57,6 +59,7 @@ module.exports = {
 
         watcher: [
             {
+                active: false,
                 channel: 'bot-kill',
                 directory: 'logs/', // Can also be an absolute path (eg: "C:/Users/server/logs/" )
                 file: 'KillFeed_*.log', // Supports wilcard (*), this will check all the files with the given filter and takes the last modified one to monitor
@@ -72,9 +75,24 @@ module.exports = {
                     name: 'Zupa test server', // Just your
                     ip: '195.xx.xxx.xxx',
                     port: 2303,
-                    rconPassword: 'xxxxxxxx',
+                    rconPassword: 'yourpass',
                     timezone: 2, // must be number, if negative just put -2
 
+                    rconCommand: '!rcon', // pretext for a command ex: !rcon say all welcome
+                    sendMessagesAsEmbeds: true, // if false, bot posts as code block with coloring. If yes, visual crads with white/black text and channel color as left border.
+                    embedColors: { // Hex color of the embed borders.
+                        side: '#6ABEE7',
+                        direct: '#959AA4',
+                        vehicle: '#DBBD48',
+                        group: '#3A8347',
+                        admin: '#ff0000',
+                        privateadmin: '#ff00ff',
+                        default: '#ffffff',
+                        commands: '#ffffff',
+                        joins: '#92FA4D',
+                        global: '#6ABEE7'
+                    },
+                    
                     actions: [ // actions only for this server.
                         {
                             command: '!server ts', // Command that a player can type ingame
@@ -84,31 +102,33 @@ module.exports = {
                         }
                     ],
                     channels: {
+                        default: 'bot-text', // mandatory
                         side: 'bot-text',
                         direct: 'bot-text',
                         vehicle: 'bot-text',
                         group: 'bot-text',
                         admin: 'bot-text',
-                        default: 'bot-text',
+                        privateadmin: 'bot-text',
                         commands: 'bot-text',
                         joins: 'bot-text',
                         global: 'bot-text'
                     },
                     showChannels: {
-                        side: true,
-                        direct: true,
-                        vehicle: true,
-                        group: true,
-                        admin: true,
-                        default: true,
-                        commands: true,
-                        joins: true,
-                        global: true
+                        side: true, // Arma only
+                        direct: true, // Used in DayZ SA and arma ( In Dayz, these are part of global chat but filtered to separate stream )
+                        vehicle: true, // Arma only
+                        group: true, // Arma only
+                        admin: true, // Used in DayZ SA and arma ( RCON chat that is private or join messages )
+                        privateadmin: true, // Used in DayZ SA and arma ( Text that is sent via rcon to 1 person )
+                        default: true, // Used in DayZ SA and arma ( Fallback for non-mapped messages if there are any )
+                        commands: true, // Used in DayZ SA and arma ( Poeple with the role ( set a bit lower ) can use the given discord channel to type commands.
+                        joins: true, // Used in DayZ SA and arma ( Join messages )
+                        global: true // Used in DayZ SA and arma sometimes ( Global dayz chat )
                     },
                     jobs: [
                         {
-                            time: '0 15 * * * *', // Command that a player can type ingame
-                            text: 'Enjoy your stay!', // Bot response ingame
+                            time: '0 15 * * * *', // CRON Timer - google CRON
+                            text: 'Enjoy your stay!', // Bot chat in game
                         }
                     ]
                 }
