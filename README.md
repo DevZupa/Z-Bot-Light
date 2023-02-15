@@ -30,6 +30,8 @@ If you don't know your [guild id?](https://support.discordapp.com/hc/en-us/artic
 
 Create a [discord app](https://discordapp.com/developers/applications/me) and fill in the key for your bot in the [config.js](https://github.com/DevZupa/Z-Bot-Light/blob/master/config.js).
 
+NEW: at the tab "Privileged Gateway Intents" check all INTENTS for the bot to be able to connect and read your server.
+
 Invite your bot to your Discord server. 
 ```js
 https://discordapp.com/oauth2/authorize?client_id=YOURBOTID&scope=bot&permissions=66321471
